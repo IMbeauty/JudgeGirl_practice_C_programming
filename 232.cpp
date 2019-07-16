@@ -24,9 +24,10 @@ int main(){
 	for(int i = 0; i < testCnt; i++){
 		int m, d, date = 0;
 		scanf("%d%d", &m, &d);
+		//d %= 7;
 		if (m>12 || m<1)
 			printf("-1");
-		else if (d>31 || d<0)
+		else if (d>31 || d<1)
 			printf("-2"); // Notice: not all date exception has been dealed
 		else{
 			switch(m){
@@ -72,42 +73,38 @@ int main(){
 					if(leap == 1)
 						date += 1;
 					break;
-				case 8:
+				case 9:
 					if(d > 30)
 						date = -2;
 					else{
-						date = d + 212;
+						date = d + 243;
 						if(leap == 1)
 							date += 1;
 					}
 					break;
-				case 9:
-					date = d + 243;
+				case 8:
+					date = d + 212;
 					if(leap == 1)
 						date += 1;
 					break;
-				case 10:
+				case 11:
 					if(d > 30)
 						date = -2;
 					else{
-						date = d + 273;
+						date = d + 304;
 						if(leap == 1)
 							date += 1;
 					}
 					break;
-				case 11:
-					date = d + 304;
+				case 10:
+					date = d + 273;
 					if(leap == 1)
 						date += 1;
 					break;
 				case 12:
-					if(d > 30)
-						date = -2;
-					else{
-						date = d + 334;
-						if(leap == 1)
-							date += 1;
-					}
+					date = d + 334;
+					if(leap == 1)
+						date += 1;
 					break;
 				default:
 					//printf("default\n");
@@ -115,7 +112,7 @@ int main(){
 			}
 			//printf("%d\n", date);
 			if(date >= 0){
-				date += (jan1st-1);
+				date += (jan1st-1+7); //可能是負的，所以要+7 
 				date %= 7;
 			}
 			printf("%d", date);
@@ -124,6 +121,5 @@ int main(){
 		if (i != testCnt-1)
 			printf("\n");
 	}
-	
 	return 0;
 }
